@@ -1,0 +1,11 @@
+{
+  "name": "Hopfenstand – Bierzähler",
+  "short_name": "Hopfenstand",
+  "description": "Ein einfacher, privater Bierzähler.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#17130d",
+  "theme_color": "#17130d",
+  "lang": "de",
+  "icons": [{ "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }]
+}
