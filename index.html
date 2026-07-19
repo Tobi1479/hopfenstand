@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#17130d" />
+    <meta name="description" content="Ein einfacher, privater Bierzähler." />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" href="icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Hopfenstand</title>
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Dein persönlicher Bierzähler</p>
+          <h1>Hopfenstand</h1>
+        </div>
+        <div class="header-actions">
+          <button class="icon-button" id="themeButton" aria-label="Design wechseln" title="Design wechseln">◐</button>
+          <button class="icon-button" id="installButton" hidden aria-label="App installieren" title="App installieren">↓</button>
+        </div>
+      </header>
+
+      <section class="hero" aria-labelledby="todayHeading">
+        <div class="hero-copy">
+          <p class="label" id="todayHeading">Heute</p>
+          <p class="today-count"><span id="todayCount">0</span> <small id="todayUnit">Bier</small></p>
+          <p class="date" id="currentDate"></p>
+        </div>
+        <button class="beer-button" id="addBeer" aria-label="Ein Bier hinzufügen">
+          <span class="glass" aria-hidden="true">
+            <span class="foam"><i></i><i></i><i></i></span>
+            <span class="beer-liquid" id="beerLiquid"><i></i><i></i><i></i></span>
+            <span class="glass-handle"></span>
+          </span>
+          <span>+ 1 Bier</span>
+        </button>
+        <div class="beer-options" aria-label="Bierdetails">
+          <label><span>Sorte</span><select id="beerType"><option>Pils</option><option>Helles</option><option>Weizen</option><option>Craft Beer</option><option>Alkoholfrei</option></select></label>
+          <label><span>Größe</span><select id="beerSize"><option value="0.33">0,33 l</option><option value="0.5" selected>0,5 l</option></select></label>
+        </div>
+        <button class="undo-button" id="undoBeer" disabled>Letzten Eintrag rückgängig</button>
+      </section>
+
+      <section class="stats" aria-label="Übersicht">
+        <article class="stat-card accent-card">
+          <p>Diesen Monat</p>
+          <strong id="monthCount">0</strong>
+          <span>Bier</span>
+        </article>
+        <article class="stat-card">
+          <p>Dieses Jahr</p>
+          <strong id="yearCount">0</strong>
+          <span>Bier</span>
+        </article>
+        <article class="stat-card">
+          <p>Ø pro Woche</p>
+          <strong id="weeklyAverage">0</strong>
+          <span>Bier</span>
+        </article>
+      </section>
+
+      <section class="recap-card" aria-label="Monatsrückblick">
+        <div class="recap-icon">✦</div>
+        <div>
+          <p class="eyebrow">Monatsrückblick</p>
+          <h2 id="recapTitle">Dein Monat</h2>
+          <p id="recapText">Noch keine Einträge in diesem Monat.</p>
+        </div>
+        <strong id="monthLiters">0 l</strong>
+      </section>
+
+      <section class="panel calendar-panel">
+        <div class="section-heading">
+          <div><p class="eyebrow">Auf einen Blick</p><h2 id="calendarTitle">Monat</h2></div>
+          <div class="heat-legend"><span></span><span></span><span></span><span></span></div>
+        </div>
+        <div class="calendar-weekdays" aria-hidden="true"><span>Mo</span><span>Di</span><span>Mi</span><span>Do</span><span>Fr</span><span>Sa</span><span>So</span></div>
+        <div class="calendar-grid" id="calendarGrid" aria-label="Bierkalender"></div>
+      </section>
+
+      <section class="panel">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Letzte 7 Tage</p>
+            <h2>Wochenverlauf</h2>
+          </div>
+          <strong id="weekTotal">0 gesamt</strong>
+        </div>
+        <div class="chart" id="weekChart" aria-label="Biere der letzten sieben Tage"></div>
+      </section>
+
+      <section class="panel history-panel">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Deine Einträge</p>
+            <h2>Verlauf</h2>
+          </div>
+          <button class="text-button" id="exportButton">Exportieren</button>
+        </div>
+        <div id="historyList" class="history-list"></div>
+      </section>
+
+      <footer>
+        <p>Deine Daten bleiben auf diesem Gerät.</p>
+        <button class="danger-button" id="resetButton">Alle Daten löschen</button>
+      </footer>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <div class="theme-picker" id="themePicker" hidden>
+      <button data-theme="pub"><span class="theme-dot pub-dot"></span>Dunkle Kneipe</button>
+      <button data-theme="garden"><span class="theme-dot garden-dot"></span>Biergarten</button>
+      <button data-theme="fest"><span class="theme-dot fest-dot"></span>Oktoberfest</button>
+    </div>
+    <dialog id="resetDialog">
+      <form method="dialog">
+        <h2>Alle Daten löschen?</h2>
+        <p>Dein kompletter Verlauf wird unwiderruflich entfernt.</p>
+        <div class="dialog-actions">
+          <button value="cancel">Abbrechen</button>
+          <button value="confirm" class="confirm-delete">Löschen</button>
+        </div>
+      </form>
+    </dialog>
+
+    <script src="app.js" defer></script>
+  </body>
+</html>
